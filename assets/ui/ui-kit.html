@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>猫は液体 | B案 UI素材セット</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #fff2d3; background: radial-gradient(circle at 52% 0%, #2b3670 0, #111a3a 44%, #070d20 100%); }
+    main { max-width: 1160px; padding: 32px 24px 60px; margin: auto; }
+    h1 { margin: 0 0 4px; font-size: clamp(28px, 4vw, 48px); letter-spacing: .08em; font-weight: 500; }
+    h2 { margin: 28px 0 14px; color: #ead09a; font-size: 21px; font-weight: 500; }
+    p { color: #c6cce2; line-height: 1.6; }
+    .eyebrow { color: #d4b36d; letter-spacing: .22em; font: 12px system-ui, sans-serif; }
+    .hud-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .counter { width: 224px; height: 64px; display: flex; align-items: center; gap: 8px; padding: 9px 20px; background: url("./hud-counter-frame.svg") center/100% 100% no-repeat; white-space: nowrap; }
+    .counter img { width: 36px; height: 36px; flex: none; }
+    .counter span { font-size: 14px; }
+    .counter strong { font: 500 23px Georgia, serif; margin-left: auto; color: #fff8dc; }
+    .hud-button { width: 157px; height: 64px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #fff2d3; background: url("./hud-button-frame.svg") center/100% 100% no-repeat; border: 0; font: 17px Georgia, serif; cursor: pointer; }
+    .hud-button img { width: 28px; height: 28px; }
+    button:focus-visible { outline: 3px solid #fff2af; outline-offset: 3px; }
+    .stage-sample { position: relative; height: 240px; overflow: hidden; background: radial-gradient(circle at 58% 5%, #5465ae 0, #212c5e 40%, #101634 100%); border: 1px solid #9d835b; }
+    .stage-sample::before { content: ""; position: absolute; inset: 0; opacity: .24; background: repeating-linear-gradient(90deg, transparent 0 69px, #d9ba7950 70px 72px, transparent 73px 84px); }
+    .terrain-gold, .terrain-fill { position: absolute; inset: 0; }
+    .terrain-gold { background: #e2bf7c; clip-path: polygon(0 29%, 47% 80%, 58% 78%, 100% 21%, 100% 100%, 0 100%); }
+    .terrain-fill { background: linear-gradient(140deg, #5b4c70, #24233f); clip-path: polygon(0 32%, 47% 83%, 58% 81%, 100% 24%, 100% 100%, 0 100%); }
+    .coin-demo { position: absolute; z-index: 2; left: 49%; top: 58%; width: 70px; height: 70px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+    .coin-demo img { width: 100%; height: 100%; filter: drop-shadow(0 0 10px #ffe08b); }
+    .coin-demo:hover img { filter: drop-shadow(0 0 17px #fff5c5); }
+    .effect { position: absolute; z-index: 4; width: 110px; height: 110px; pointer-events: none; opacity: 0; }
+    .effect.play { animation: flash .4s ease-out; }
+    .score-popup { position: absolute; z-index: 5; color: #fff4c8; font: 600 25px Georgia, serif; text-shadow: 0 0 9px #6b3a46; pointer-events: none; opacity: 0; translate: -50% 0; }
+    .score-popup.play { animation: rise .65s ease-out; }
+    @keyframes flash { 0% { opacity: 0; transform: scale(.2); } 25% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.35); } }
+    @keyframes rise { 0% { opacity: 0; transform: translateY(7px); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(-25px); } }
+    .gauge-demo { position: relative; width: min(100%, 620px); aspect-ratio: 620 / 90; background: url("./danger-gauge-frame.svg") center/100% 100% no-repeat; }
+    .gauge-label { position: absolute; top: 31%; left: 12%; font-size: clamp(12px, 2vw, 18px); }
+    .gauge-fill { position: absolute; left: 29.3%; top: 40%; width: 34%; height: 20%; background: linear-gradient(90deg, #a2b2ed 0%, #dc7895 65%, #fb456a 100%); }
+    .gauge-cat { position: absolute; left: 60%; top: 8%; width: 10%; height: 67%; }
+    .dialog-sample { width: min(100%, 640px); min-height: 310px; display: grid; align-content: center; justify-items: center; gap: 7px; padding: 40px; background: url("./dialog-panel.svg") center/100% 100% no-repeat; text-align: center; }
+    .dialog-sample h3 { font-size: 28px; font-weight: 500; margin: 0; }
+    .dialog-sample p { margin: 0 0 12px; }
+    .dialog-sample .hud-button { width: 220px; }
+    .asset-strip { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; padding: 12px 0; }
+    .asset-strip figure { margin: 0; width: 105px; text-align: center; }
+    .asset-strip img { width: 72px; height: 72px; }
+    .asset-strip figcaption { font: 12px system-ui, sans-serif; color: #d4c8ad; }
+    @media (prefers-reduced-motion: reduce) { .effect.play, .score-popup.play { animation-duration: .01ms; } }
+    @media (max-width: 560px) { main { padding: 20px 12px 40px; } .counter { width: calc(50% - 6px); min-width: 145px; height: 54px; padding: 8px 12px; } .counter img { width: 27px; height: 27px; } .counter span { font-size: 12px; } .counter strong { font-size: 17px; } .stage-sample { height: 190px; } .coin-demo { width: 56px; height: 56px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">CAT IS LIQUID · MYSTIC LIBRARY</div>
+    <h1>UI素材セット</h1>
+    <p>月の刻印コインと、B案の紺・金に合わせたHUD素材。コインを押すと取得演出を確認できます。</p>
+    <h2>プレイ画面のHUD</h2>
+    <div class="hud-row">
+      <div class="counter"><img src="./icon-book.svg" alt=""><span>本</span><strong>2/3</strong></div>
+      <div class="counter"><img src="./coin-moon.svg" alt=""><span>コイン</span><strong>12/50</strong></div>
+      <div class="counter"><img src="./icon-score.svg" alt=""><span>スコア</span><strong>4,520</strong></div>
+      <div class="counter"><img src="./icon-cat-life.svg" alt=""><span>残機</span><strong>×3</strong></div>
+      <button class="hud-button" type="button"><img src="./icon-pause.svg" alt="">ポーズ</button>
+    </div>
+    <h2>ステージ上のコイン</h2>
+    <div class="stage-sample">
+      <div class="terrain-gold"></div><div class="terrain-fill"></div>
+      <button class="coin-demo" type="button" aria-label="コインの取得演出を見る"><img src="./coin-moon.svg" alt=""></button>
+      <img class="effect" src="./icon-spark.svg" alt=""><span class="score-popup">+100</span>
+    </div>
+    <h2>停止危険ゲージ</h2>
+    <div class="gauge-demo"><span class="gauge-label">停止危険</span><span class="gauge-fill"></span><img class="gauge-cat" src="./icon-cat-life.svg" alt=""></div>
+    <h2>ポーズ画面のパネル</h2>
+    <div class="dialog-sample"><div class="eyebrow">A MOMENT BETWEEN PAGES</div><h3>ポーズ</h3><p>本の海で、ひと休み。</p><button class="hud-button" type="button">再開する</button></div>
+    <h2>単体アイコン</h2>
+    <div class="asset-strip">
+      <figure><img src="./coin-moon.svg" alt="月の刻印コイン"><figcaption>月の刻印</figcaption></figure>
+      <figure><img src="./icon-book.svg" alt="光る本"><figcaption>本</figcaption></figure>
+      <figure><img src="./icon-score.svg" alt="スコアの星"><figcaption>スコア</figcaption></figure>
+      <figure><img src="./icon-cat-life.svg" alt="黒猫"><figcaption>残機・マーカー</figcaption></figure>
+      <figure><img src="./icon-pause.svg" alt="ポーズ"><figcaption>ポーズ</figcaption></figure>
+      <figure><img src="./icon-spark.svg" alt="取得時の光"><figcaption>取得エフェクト</figcaption></figure>
+    </div>
+  </main>
+  <script>
+    const coin = document.querySelector('.coin-demo');
+    const spark = document.querySelector('.effect');
+    const popup = document.querySelector('.score-popup');
+    const effects = [spark, popup];
+    coin.addEventListener('click', () => {
+      const centerX = coin.offsetLeft + coin.offsetWidth / 2;
+      const centerY = coin.offsetTop + coin.offsetHeight / 2;
+      spark.style.left = (centerX - spark.offsetWidth / 2) + 'px';
+      spark.style.top = (centerY - spark.offsetHeight / 2) + 'px';
+      popup.style.left = centerX + 'px';
+      popup.style.top = (centerY - 66) + 'px';
+      effects.forEach(node => { node.classList.remove('play'); void node.offsetWidth; node.classList.add('play'); });
+    });
+  </script>
+</body>
+</html>

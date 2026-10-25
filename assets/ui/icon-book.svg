@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="光る本のアイコン">
+  <defs><linearGradient id="paper" x2=".8" y2="1"><stop stop-color="#fff7d2"/><stop offset="1" stop-color="#c9984a"/></linearGradient></defs>
+  <path d="M10 14q12-4 22 4 10-8 22-4v35q-12-4-22 4-10-8-22-4Z" fill="#111a37" stroke="#f2d490" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M14 18q10-3 16 4v26q-7-5-16-3ZM50 18q-10-3-16 4v26q7-5 16-3Z" fill="url(#paper)"/>
+  <path d="M32 19v34M18 25l8 2m-8 5 8 2m12-7 8-2m-8 9 8-2" stroke="#a0683c" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M32 3v8m-4-4h8M6 35v6m-3-3h6" stroke="#fff3c0" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

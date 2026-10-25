@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="スコアの星のアイコン">
+  <circle cx="32" cy="32" r="27" fill="#111a38" stroke="#d8b36c" stroke-width="2"/>
+  <circle cx="32" cy="32" r="21" fill="none" stroke="#8a6d50" stroke-width="1"/>
+  <path d="M32 11 38 26l15 6-15 6-6 15-6-15-15-6 15-6Z" fill="#e8bf6c" stroke="#fff2bd" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle cx="32" cy="32" r="5" fill="#fff8dc"/>
+</svg>

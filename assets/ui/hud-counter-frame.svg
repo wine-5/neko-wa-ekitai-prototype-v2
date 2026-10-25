@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 88" role="img" aria-label="HUDの数字表示用の飾り枠">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#172341" stop-opacity=".97"/><stop offset="1" stop-color="#080e25" stop-opacity=".97"/></linearGradient>
+    <linearGradient id="gold" x2="1" y2="1"><stop stop-color="#fff0b4"/><stop offset=".55" stop-color="#c89952"/><stop offset="1" stop-color="#f1d38f"/></linearGradient>
+    <g id="corner" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 31V16q0-8 8-8h26M8 25q10 0 10-10 0 10 10 10-10 0-10 10 0-10-10-10Z"/>
+      <path d="M23 12q6 9 16 6M12 41q9-3 8-10" stroke-width="1"/>
+      <circle cx="18" cy="17" r="2" fill="#f4d994"/>
+    </g>
+  </defs>
+  <path d="M18 3h284l15 15v52l-15 15H18L3 70V18Z" fill="url(#bg)" stroke="url(#gold)" stroke-width="2"/>
+  <path d="M21 9h278l12 12v46l-12 12H21L9 67V21Z" fill="none" stroke="#8d734e" stroke-width="1"/>
+  <path d="M50 14h220M50 74h220" stroke="#8e744e" stroke-width="1" opacity=".7"/>
+  <use href="#corner"/><use href="#corner" transform="translate(320 0) scale(-1 1)"/>
+  <use href="#corner" transform="translate(0 88) scale(1 -1)"/><use href="#corner" transform="translate(320 88) scale(-1 -1)"/>
+</svg>

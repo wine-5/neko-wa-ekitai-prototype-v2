@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 90" role="img" aria-label="停止危険ゲージの飾り枠">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#182545"/><stop offset="1" stop-color="#080d24"/></linearGradient>
+    <linearGradient id="gold" x2="1" y2="1"><stop stop-color="#fff0b9"/><stop offset=".55" stop-color="#b98e52"/><stop offset="1" stop-color="#e2ba77"/></linearGradient>
+  </defs>
+  <path d="M28 5h564l22 18v44l-22 18H28L6 67V23Z" fill="url(#bg)" stroke="url(#gold)" stroke-width="2.5"/>
+  <path d="M31 11h558l17 15v38l-17 15H31L14 64V26Z" fill="none" stroke="#816a4d" stroke-width="1.2"/>
+  <path d="M23 45q18-4 20-25 2 20 20 25-18 3-20 24-2-21-20-24ZM597 45q-18-4-20-25-2 20-20 25 18 3 20 24 2-21 20-24Z" fill="none" stroke="#e3bd75" stroke-width="1.5"/>
+  <path d="M180 30h363l12 15-12 15H180l-12-15Z" fill="#0a112b" stroke="#e3c081" stroke-width="2"/>
+  <path d="M185 36h353l8 9-8 9H185l-8-9Z" fill="#253251"/>
+  <path d="M80 22h80M80 68h80" stroke="#bd965e" opacity=".65"/>
+</svg>

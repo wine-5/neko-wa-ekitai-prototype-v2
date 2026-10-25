@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="残機を表す黒猫の顔">
+  <circle cx="32" cy="33" r="27" fill="#11162f" stroke="#dcb56b" stroke-width="2"/>
+  <path d="M12 26 18 10l12 9h4l12-9 6 16v13q-3 15-20 16Q15 54 12 39Z" fill="#070b18" stroke="#f1d08b" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M21 34q5-4 9 2-5 5-9-2Zm22 0q-5-4-9 2 5 5 9-2Z" fill="#ffe976"/>
+  <path d="M27 43q5 4 10 0" fill="none" stroke="#d7b174" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="32" cy="41" r="1.5" fill="#f3cb80"/>
+</svg>

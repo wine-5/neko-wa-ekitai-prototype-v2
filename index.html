@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>猫は液体 | HTMLプロトタイプ</title>
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <main class="shell">
+    <div class="game-frame" id="gameFrame">
+      <canvas id="game" width="1280" height="720" tabindex="0" aria-label="猫は液体のゲーム画面"></canvas>
+      <div class="vignette" aria-hidden="true"></div>
+
+      <div class="hud" id="hud" hidden>
+        <div class="hud-stage">STAGE 01 <span>星降る書架</span></div>
+        <div class="flight-meter"><div>飛距離 <strong id="flightDistance">--</strong> px <span>上昇 <strong id="flightRise">--</strong> px</span></div><div>最長滞空 <strong id="flightTime">--</strong> 秒 <span id="flightTarget">目標 10.0秒</span></div></div>
+        <div class="hud-stats" aria-label="スコアと残機">
+          <div class="stat-counter">合計スコア <strong id="scoreCount">0</strong></div>
+          <div class="stat-counter">残機 <strong id="lifeCount">3</strong></div>
+          <div class="stat-counter coin-stat"><img src="./assets/coin-moon.png" alt=""> コイン <strong id="coinProgress">0 / 50</strong></div>
+        </div>
+        <div class="status-toast" id="statusToast" role="status" hidden></div>
+        <div class="hud-right">
+          <div class="book-counter"><span aria-hidden="true">✧</span> 本 <strong id="bookCount">0</strong> / 3</div>
+          <button class="pause-button" id="pauseButton" type="button" aria-label="ポーズ">Esc <span>ポーズ</span></button>
+        </div>
+        <div class="hud-bottom">
+          <div class="control-hint" id="controlHint"><kbd>SPACE</kbd> ジャンプ台で離し、10秒滑空を目指そう</div>
+          <div class="stall-wrap"><span>停止危険</span><div class="stall-track"><div id="stallFill"></div></div><span id="stallText">0%</span></div>
+        </div>
+      </div>
+
+      <section class="screen title-screen" id="titleScreen" aria-labelledby="titleHeading">
+        <div class="title-copy">
+          <div class="eyebrow">THE ENCHANTED LIBRARY · PROTOTYPE 0.1</div>
+          <h1 id="titleHeading">猫は<span>液体</span></h1>
+          <p class="title-sub">滑って、跳んで、本を集める。</p>
+          <p class="title-story">ご主人のために、黒猫は今夜も<br>不思議な図書館を駆け抜ける。</p>
+          <div class="menu-actions">
+            <button class="ornate-button primary" data-action="map" type="button"><span>✧</span> はじめる</button>
+            <button class="ornate-button" data-action="map" type="button"><span>⌘</span> ステージ選択</button>
+            <button class="ornate-button" data-action="settings" type="button"><img class="button-icon" src="./assets/ui_unity_v1/settings-icon.png" alt=""> 設定</button>
+          </div>
+          <p class="menu-note"><kbd>Enter</kbd> ではじめる</p>
+        </div>
+      </section>
+
+      <section class="screen map-screen" id="mapScreen" aria-labelledby="mapHeading" hidden>
+        <div class="center-panel map-panel">
+          <div class="eyebrow">LIBRARY MAP</div>
+          <h2 id="mapHeading">ステージ選択</h2>
+          <p class="panel-lead">長い下りで勢いをつけ、ジャンプ台から10秒の大滑空へ。</p>
+          <button class="stage-card" data-action="play" type="button">
+            <span class="stage-number">01</span>
+            <span class="stage-info"><strong>星降る書架</strong><small>最初のジャンプ台から10秒滑空を狙うステージ</small></span>
+            <span class="stage-arrow">▶</span>
+          </button>
+          <div class="map-footer"><span>遊べるステージは現在 01 のみ</span><button class="text-button" data-action="title" type="button">← タイトルへ</button></div>
+        </div>
+      </section>
+
+      <section class="screen overlay-screen" id="pauseScreen" aria-labelledby="pauseHeading" hidden>
+        <div class="center-panel compact-panel">
+          <div class="eyebrow">A MOMENT BETWEEN PAGES</div>
+          <h2 id="pauseHeading">ポーズ</h2>
+          <p class="panel-lead">本の海で、ひと休み。</p>
+          <div class="vertical-actions">
+            <button class="ornate-button primary" data-action="resume" type="button">再開する</button>
+            <button class="ornate-button" data-action="settings" type="button"><img class="button-icon" src="./assets/ui_unity_v1/settings-icon.png" alt=""> 音量設定</button>
+            <button class="ornate-button" data-action="retry" type="button">やり直す</button>
+            <button class="text-button" data-action="map" type="button">ステージ選択へ</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen overlay-screen" id="settingsScreen" aria-labelledby="settingsHeading" hidden>
+        <div class="center-panel compact-panel audio-panel">
+          <div class="eyebrow">THE LIBRARY'S SOUNDS</div>
+          <h2 id="settingsHeading">音量設定</h2>
+          <p class="panel-lead">図書館の音を、お好みの大きさに。</p>
+          <div class="audio-settings">
+            <div class="audio-setting-row">
+              <label for="bgmVolume">BGM</label>
+              <input id="bgmVolume" type="range" min="0" max="100" step="1" value="40" aria-label="BGMの音量">
+              <output id="bgmVolumeValue" for="bgmVolume">40%</output>
+            </div>
+            <div class="audio-setting-row">
+              <label for="seVolume">SE</label>
+              <input id="seVolume" type="range" min="0" max="100" step="1" value="65" aria-label="SEの音量">
+              <output id="seVolumeValue" for="seVolume">65%</output>
+            </div>
+          </div>
+          <div class="vertical-actions">
+            <button class="ornate-button" data-action="preview-se" type="button">SEを試す</button>
+            <button class="ornate-button primary" data-action="close-settings" type="button">戻る</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen overlay-screen" id="missScreen" aria-labelledby="missHeading" hidden>
+        <div class="center-panel compact-panel">
+          <div class="eyebrow">ANOTHER PAGE AWAITS</div>
+          <h2 id="missHeading">ミス</h2>
+          <p class="panel-lead" id="missReason">穴に落ちた</p>
+          <p class="run-summary" id="missStats"></p>
+          <p class="menu-note">あと <strong id="retryCountdown">3</strong> 秒で自動再挑戦</p>
+          <div class="vertical-actions">
+            <button class="text-button" data-action="map" type="button">ステージ選択へ</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen overlay-screen" id="gameOverScreen" aria-labelledby="gameOverHeading" hidden>
+        <div class="center-panel compact-panel">
+          <div class="eyebrow">THE LAST PAGE</div>
+          <h2 id="gameOverHeading">ゲームオーバー</h2>
+          <p class="run-summary" id="gameOverStats"></p>
+          <div class="vertical-actions">
+            <button class="ornate-button primary" data-action="retry" type="button">最初から</button>
+            <button class="text-button" data-action="map" type="button">ステージ選択へ</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen overlay-screen witch-screen" id="witchScreen" aria-labelledby="witchHeading" hidden>
+        <div class="center-panel compact-panel">
+          <div class="witch-mark" aria-hidden="true">✦</div>
+          <div class="eyebrow">ALL BOOKS FOUND</div>
+          <h2 id="witchHeading">おかえり、私の使い魔</h2>
+          <p class="panel-lead">魔女が、あなたの集めた本を迎えに来た。</p>
+          <button class="ornate-button primary" data-action="result" type="button">結果を見る</button>
+        </div>
+      </section>
+
+      <section class="screen overlay-screen" id="resultScreen" aria-labelledby="resultHeading" hidden>
+        <div class="center-panel compact-panel">
+          <div class="eyebrow">STAGE 01 COMPLETE</div>
+          <h2 id="resultHeading">ステージクリア</h2>
+          <div class="result-books"><span aria-hidden="true">✧</span> 本 <strong id="resultBooks">0</strong> / 3</div>
+          <p class="run-summary">今回の得点 <strong id="resultScore">0</strong><br>ステージ最高 <strong id="bestScore">0</strong><br>合計スコア <strong id="resultTotalScore">0</strong></p>
+          <p class="panel-lead" id="resultMessage">出口にたどり着いた。</p>
+          <div class="vertical-actions">
+            <button class="ornate-button primary" data-action="retry" type="button">もう一度</button>
+            <button class="text-button" data-action="map" type="button">ステージ選択へ</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <p class="below-frame">操作：長い下りで <kbd>Space</kbd> を押し、ジャンプ台で解放。空中では離したまま滑空。<kbd>Esc</kbd> でポーズ。</p>
+  </main>
+  <script defer src="./src/game-classic.js"></script>
+</body>
+</html>

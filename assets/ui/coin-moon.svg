@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="月の刻印のコイン">
+  <defs>
+    <radialGradient id="face" cx=".3" cy=".2" r=".85">
+      <stop stop-color="#fff9d9"/><stop offset=".28" stop-color="#f4d477"/>
+      <stop offset=".72" stop-color="#cc8a37"/><stop offset="1" stop-color="#85502b"/>
+    </radialGradient>
+    <linearGradient id="rim" x2=".85" y2="1">
+      <stop stop-color="#fff7ca"/><stop offset=".48" stop-color="#e0ae59"/><stop offset="1" stop-color="#8c5128"/>
+    </linearGradient>
+    <mask id="moon"><circle cx="32" cy="32" r="13" fill="#fff"/><circle cx="39" cy="26" r="12" fill="#000"/></mask>
+  </defs>
+  <circle cx="32" cy="32" r="27" fill="#794523" stroke="#fff0b2" stroke-width="2"/>
+  <circle cx="32" cy="32" r="24" fill="url(#rim)"/>
+  <circle cx="32" cy="32" r="20" fill="url(#face)" stroke="#a3602b" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="15" fill="none" stroke="#fff0b0" stroke-opacity=".72" stroke-width="1"/>
+  <circle cx="32" cy="32" r="13" fill="#68414a" mask="url(#moon)"/>
+  <path d="M15 14v8m-4-4h8M50 39v6m-3-3h6" stroke="#fff9dc" stroke-linecap="round" stroke-width="1.5"/>
+</svg>
